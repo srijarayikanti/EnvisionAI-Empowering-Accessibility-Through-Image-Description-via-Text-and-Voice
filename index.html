@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image_captioning</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+    .heading{
+        font-weight: 100;
+        font-size: 2em;
+        text-shadow: 1px 1px 5px black;
+    }
+    img{
+        height: 90%;
+        width: 90%;
+    }
+    .text
+    {
+        font-size: 32px;
+        font-style: italic;
+    }
+    h1
+    {
+        text-align: center;
+    }
+    p
+    {
+        text-align: center;
+    }
+    .form-inline{
+        text-align: center;
+    }
+
+</style>
+</head>
+<body style="background-color: lavenderblush;">
+<div class ="container">
+<div class="jumbotron" style="background-color: black;">
+    <div class="container" >
+        <h1 class ='heading'  style="color: white">IMAGE CAPTION</h1>
+        <p style="color: white"> Upload your image to generate a caption.... </p>
+    </div>
+</div>
+
+  <form class="form-inline" method="POST" action="/" enctype="multipart/form-data">
+      <label><b> Image : &nbsp; &nbsp;</b></label>
+      <input  class="form-control" type="file" name="userfile" placeholder="your image">
+      <button type="submit" class="btn btn-primary"> SUBMIT </button>
+
+  </form>
+    <br>
+    <br>
+{% if result_c %}
+  <div class="row">
+    <div class="col-sm-4">
+      <img src="{{result_c['image']}}">
+    </div>
+    <div class="col-sm-8">
+      <div class="caption-container"> <!-- Wrap caption and audio in a container -->
+        <p class="text">Generated Caption:</p>
+        <p><b>{{result_c['caption']}}</b></p>
+        <div class="audio_container">
+          <audio controls>
+            <source src="{{result_c['audiopath']}}" type="audio/mpeg">
+          </audio>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+</div>
+</body>
+</html>
